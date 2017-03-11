@@ -1,5 +1,5 @@
 {
-  "name": "Arc",
+  "name": "arc-server",
   "version": "0.0.0",
   "description": "Koa Powered Universal React Server",
   "main": "lib/index.js",
