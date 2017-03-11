@@ -1,6 +1,6 @@
 import server from './server';
-import router from './router';
-import logger from './logger';
+import router from './middleware/router';
+import logger from './middleware/logger';
 
 const DEFAULT_CONFIG = {
   name: 'Arc Server',
