@@ -1,41 +1,42 @@
+// @flow
 import director from 'director';
 import chalk from 'chalk';
 
-const DEFAULT_ROUTES = [{
-  method: 'GET',
-  path: '/health-check',
-  handler: async () => '',
-}];
+/* [Type Definitions] */
+import type { Middleware, Route } from './types';
 
-const createRouter = routes => new director.http.Router(routes);
+/* [Private] */
+const createRouter:Function = (routes:Object):Object => new director.http.Router(routes);
 
-const setResponse = async (route, ctx) => {
+const setResponse:Function = async (route:Route, ctx:Object):Promise<void> => {
   ctx.res.body = await route.handler(ctx.req);
   if (route.hasOwnProperty('status')) ctx.res.status = route.status;
 };
 
-const handlerAdapter = route => function() {
+const handlerAdapter:Function = (route:Route):Function => function():void {
   setResponse(route, this);
 };
 
-const routeAdapter = route => {
+const routeAdapter:Function = (route:Route):Object => {
   return { [route.method.toLowerCase()]: handlerAdapter(route) };
 };
 
-const routesAdapter = (routes) => {
-  return routes.reduce((acc, route) => {
-    return {
-      ...acc,
-      [route.path]: {
-        ...acc[route.path],
-        ...routeAdapter(route),
-      },
-    };
-  }, {});
+const routesAdapterReducer:Function = (r0:Object, r1:Route):Object => {
+  return {
+    ...r0,
+    [r1.path]: {
+      ...r0[r1.path],
+      ...routeAdapter(r1),
+    },
+  };
 };
 
-const notFoundHandler = req => `Page: ${req.url} not found`;
-const onError = ctx => async err => {
+const routesAdapter:Function = (routes:Route[]):Object => {
+  return routes.reduce(routesAdapterReducer, {});
+};
+
+const notFoundHandler:Function = (req:Object):string => `Page: ${req.url} not found`;
+const onError:Function = (ctx:Object):Function => async (err:Object):Promise<void> => {
   if (err.status === 404) {
     ctx.response.body = notFoundHandler(ctx.request);
     ctx.response.status = 404;
@@ -43,14 +44,17 @@ const onError = ctx => async err => {
   // TODO: Log errors
 };
 
-const routerMiddleware = router => async (ctx, next) => {
-  router.dispatch(ctx.request, ctx.response, onError(ctx));
-  await next();
+const routerMiddleware:Function = (router:Object):Middleware => {
+  return async (ctx:Object, next:Function):Promise<void> => {
+    router.dispatch(ctx.request, ctx.response, onError(ctx));
+    await next();
+  };
 };
 
-const init = (routesConfig = []) => {
-  const routes = routesAdapter([ ...DEFAULT_ROUTES, ...routesConfig ]);
-  const router = createRouter(routes);
+/* [Public] */
+export const init:Function = (routesConfig:Route[]):Middleware => {
+  const routes:Object = routesAdapter(routesConfig);
+  const router:Object = createRouter(routes);
   return routerMiddleware(router);
 };
 

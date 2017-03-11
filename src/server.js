@@ -1,12 +1,20 @@
+// @flow
 import Koa from 'koa';
 import chalk from 'chalk';
 
-const server = new Koa();
+/* [Type Definitions] */
+import type { Middleware } from './middleware/types';
 
-export const register = (...fns) => fns.forEach(fn => server.use(fn));
+/* [Private] */
+const server:Object = new Koa();
 
-export const listen = (port) => {
-  const startMsg = `Starting server at http://127.0.0.1:${port}...`;
+const applyMiddleware:Function = (fn:Middleware) => server.use(fn);
+
+/* [Public] */
+export const register:Function = (...fns:Middleware[]) => fns.forEach(applyMiddleware);
+
+export const listen:Function = (port:number):void => {
+  const startMsg:string = `Starting server at http://127.0.0.1:${port}...`;
   console.log(chalk.green(startMsg));
   server.listen(port);
 };

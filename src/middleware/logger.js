@@ -1,10 +1,20 @@
+// @flow
 import koaLogger from 'koa-bunyan';
 import bunyan from 'bunyan';
 
-const logger = name => bunyan.createLogger({ name });
+/* [Type Definitions] */
+import type { Config } from '../index';
+import type { Middleware } from './types';
 
-export const loggerMiddleware = config => {
-  return koaLogger(logger(config.name), { timeLimit: 100 });
+/* [Defaults] */
+import { DEFAULT_NAME } from '../index';
+
+/* [Private] */
+const logger:Function = (name:string):Object => bunyan.createLogger({ name });
+
+/* [Public] */
+export const loggerMiddleware:Function = (config:Config):Middleware => {
+  return koaLogger(logger(config.name || DEFAULT_NAME), { timeLimit: 100 });
 };
 
 export default loggerMiddleware;
