@@ -9,7 +9,7 @@
   "scripts": {
     "build": "npm run clean && npm run build:js",
     "build:js": "NODE_ENV=production babel src --out-dir lib",
-    "clean": "find lib -mindepth 1 -delete",
+    "clean": "rm -rf lib",
     "debug": "nodemon --exec babel-node debug ./src/index.js",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "start": "nodemon --exec babel-node ./src/index.js | bunyan -o short",
