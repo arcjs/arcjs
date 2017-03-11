@@ -10,16 +10,18 @@
     "build": "npm run clean && npm run build:js",
     "build:js": "NODE_ENV=production babel src --out-dir lib",
     "clean": "find lib -mindepth 1 -delete",
-    "start": "nodemon --exec babel-node ./src/index.js",
+    "start": "nodemon --exec babel-node ./src/index.js | bunyan -o short",
     "debug": "nodemon --exec babel-node debug ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Chi-chi Wang <chichi@wangchiyi.com>",
   "license": "ISC",
   "dependencies": {
+    "bunyan": "^1.8.8",
     "chalk": "^1.1.3",
     "director": "^1.2.8",
-    "koa": "^2.0.1"
+    "koa": "^2.0.1",
+    "koa-bunyan": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",

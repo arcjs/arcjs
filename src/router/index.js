@@ -36,7 +36,10 @@ const routesAdapter = (routes) => {
 
 const notFoundHandler = req => `Page: ${req.url} not found`;
 const onError = ctx => async err => {
-  if (err.status === 404) ctx.response.body = notFoundHandler(ctx.request);
+  if (err.status === 404) {
+    ctx.response.body = notFoundHandler(ctx.request);
+    ctx.response.status = 404;
+  }
   // TODO: Log errors
 };
 
