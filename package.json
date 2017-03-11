@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "Koa Powered Universal React Server",
   "main": "lib/index.js",
+  "engines": {
+    "node": ">=7.6.0"
+  },
   "scripts": {
     "build": "npm run clean && npm run build:js",
     "build:js": "NODE_ENV=production babel src --out-dir lib",
