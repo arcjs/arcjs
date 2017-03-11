@@ -13,7 +13,7 @@ export default {
 start({
   routes: [{
     method: 'GET',
-    route: '/',
+    path: '/',
     handler: () => 'Hello World!'
   }]
 });
