@@ -16,11 +16,13 @@ export type Config = {
 /* [Defaults] */
 export const DEFAULT_NAME:string = 'arc-server';
 
-const DEFAULT_ROUTES:Route[] = [{
+const HEALTH_CHECK_ROUTE:Route = {
   method: 'GET',
   path: '/health-check',
   handler: async () => '',
-}];
+};
+
+const DEFAULT_ROUTES:Route[] = [HEALTH_CHECK_ROUTE];
 
 const DEFAULT_CONFIG:Config = {
   name: DEFAULT_NAME,
@@ -42,11 +44,18 @@ const configReducer:Function = (c0:Config, c1:Config):Config => {
 
 const initMiddleware:Function = (config:Config):void => {
   server.register(router(config.routes));
-  if (!!config.logger) server.register(logger(config));
+  if (!!config.logger) server.register(logger(config.name));
 };
 
 const mergeConfigs:Function = (...configs:Config[]):Config => {
   return configs.reduce(configReducer);
+};
+
+/* [Tests] */
+export const __test__ = {
+  DEFAULT_NAME,
+  DEFAULT_ROUTES,
+  HEALTH_CHECK_ROUTE,
 };
 
 /* [Public] */

@@ -13,8 +13,8 @@ import { DEFAULT_NAME } from '../index';
 const logger:Function = (name:string):Object => bunyan.createLogger({ name });
 
 /* [Public] */
-export const loggerMiddleware:Function = (config:Config):Middleware => {
-  return koaLogger(logger(config.name || DEFAULT_NAME), { timeLimit: 100 });
+export const loggerMiddleware:Function = (name:string = DEFAULT_NAME):Middleware => {
+  return koaLogger(logger(name), { timeLimit: 100 });
 };
 
 export default loggerMiddleware;
