@@ -1,6 +1,6 @@
-# Arc Server Documentation
+# Arc Documentation
 
-## Developing Arc Server
+## Developing Arc
 * [npm scripts](./scripts.md)
 
-## Using Arc Server
+## Using Arc
