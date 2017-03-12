@@ -1,6 +1,11 @@
 # Arc Documentation
 
-## Developing Arc
+### Developing Arc
 * [npm scripts](./scripts.md)
+* [Using Arc canary build](./canary.md)
 
-## Using Arc
+### Using Arc
+* ~~Installing Arc~~ _(Arc has not yet been published)_
+* [Using Arc canary build](./canary.md)
+* TODO: Getting started
+* TODO: Arc API
