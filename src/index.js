@@ -30,17 +30,19 @@ const DEFAULT_CONFIG:Config = {
 };
 
 /* [Private] */
-const initMiddleware:Function = (config:Config):void => {
-  server.register(router(config.routes));
-  if (!!config.logger) server.register(logger(config));
-};
-
 const configReducer:Function = (c0:Config, c1:Config):Config => {
+  const r0 = c0.routes || [];
+  const r1 = c1.routes || [];
   return {
     ...c0,
     ...c1,
-    routes: [...c0.routes, ...c1.routes],
+    routes: r0.concat(r1),
   };
+};
+
+const initMiddleware:Function = (config:Config):void => {
+  server.register(router(config.routes));
+  if (!!config.logger) server.register(logger(config));
 };
 
 const mergeConfigs:Function = (...configs:Config[]):Config => {
