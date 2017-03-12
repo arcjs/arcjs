@@ -1,6 +1,2 @@
 [include]
 ./src/**
-
-[ignore]
-.*/node_modules/flow-runtime/**
-.*/node_modules/babel-plugin-flow-runtime/** 

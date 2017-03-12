@@ -8,10 +8,6 @@
     }]
   ],
   "plugins": [
-    ["flow-runtime", {
-      "assert": true,
-      "annotate": true
-    }],
     "syntax-flow",
     "transform-flow-strip-types"
   ]
