@@ -3,9 +3,7 @@ import Koa from 'koa';
 import chalk from 'chalk';
 
 jest.mock('koa');
-jest.mock('chalk', () => {
-  return { green: jest.fn() };
-});
+jest.mock('chalk', () => ({ green: jest.fn() }));
 
 describe('server.js module imported', () => {
   test('it instantiates an instance of Koa', () => {

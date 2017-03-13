@@ -5,9 +5,7 @@ jest.mock('director', () => {
   const dispatchMock = jest.fn();
   return {
     http: {
-      Router: jest.fn(() => {
-        return { dispatch: dispatchMock };
-      }),
+      Router: jest.fn(() => ({ dispatch: dispatchMock })),
     },
   };
 });

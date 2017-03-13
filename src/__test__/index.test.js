@@ -24,11 +24,7 @@ const options = {
   empty: {},
 };
 
-const mockResponse = args => {
-  return {
-    mock: args,
-  };
-};
+const mockResponse = args => ({ mock: args });
 
 describe('#start', () => {
   beforeEach(() => {
