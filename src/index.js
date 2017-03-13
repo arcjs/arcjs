@@ -44,13 +44,12 @@ const configReducer:Function = (c0:Config, c1:Config):Config => {
 
 const initMiddleware:Function = (config:Config):void => {
   server.register(router(config.routes));
-  if (!!config.logger) server.register(logger(config.name));
+  if (config.logger) server.register(logger(config.name));
 };
 
-const mergeConfigs:Function = (...configs:Config[]):Config => {
-  return configs.reduce(configReducer);
-};
-
+const mergeConfigs:Function = (...configs:Config[]):Config => (
+  configs.reduce(configReducer)
+);
 /* [Tests] */
 export const __test__ = {
   DEFAULT_NAME,

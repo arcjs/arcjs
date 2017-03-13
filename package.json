@@ -12,6 +12,8 @@
     "clean": "rm -rf lib",
     "debug": "nodemon --exec babel-node debug ./src/index.js",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "lint": "eslint -c .eslintrc ./src/**",
+    "lint:changed": "eslint -c .eslintrc --cache ./src/**",
     "start": "nodemon --exec babel-node ./src/index.js | bunyan -o short",
     "test": "jest",
     "test:changed": "jest -o"
@@ -27,17 +29,27 @@
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
+    "babel-eslint": "^7.1.1",
     "babel-jest": "^19.0.0",
     "babel-plugin-syntax-flow": "^6.18.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-env": "^1.2.0",
     "babel-preset-stage-2": "^6.22.0",
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-flowtype": "^2.30.3",
+    "eslint-plugin-immutable": "^1.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0",
     "flow-bin": "^0.41.0",
     "jest": "^19.0.2",
     "nodemon": "^1.11.0"
   },
   "jest": {
     "verbose": true,
-    "roots": ["src"]
+    "roots": [
+      "src"
+    ]
   }
 }

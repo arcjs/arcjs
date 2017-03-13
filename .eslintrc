@@ -1,0 +1,15 @@
+{
+  "extends": "eslint-config-airbnb",
+  "parser": "babel-eslint",
+  "plugins": [
+    "flowtype",
+    "immutable"
+  ],
+  "rules": {
+    "no-underscore-dangle": 0,
+    "immutable/no-let": 0,
+    "immutable/no-this": 0,
+    "immutable/no-mutation": 2,
+    "import/no-named-as-default-member": 0
+  }
+}

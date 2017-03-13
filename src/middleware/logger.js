@@ -3,11 +3,11 @@ import koaLogger from 'koa-bunyan';
 import bunyan from 'bunyan';
 
 /* [Type Definitions] */
-import type { Config } from '../index';
 import type { Middleware } from './types';
 
 /* [Defaults] */
 import { DEFAULT_NAME } from '../index';
+
 const DEFAULT_TIMELIMIT = 100;
 
 /* [Private] */
@@ -19,8 +19,8 @@ export const __test__ = {
 };
 
 /* [Public] */
-export const loggerMiddleware:Function = (name:string = DEFAULT_NAME):Middleware => {
-  return koaLogger(logger(name), { timeLimit: DEFAULT_TIMELIMIT });
-};
+export const loggerMiddleware:Function = (name:string = DEFAULT_NAME):Middleware => (
+  koaLogger(logger(name), { timeLimit: DEFAULT_TIMELIMIT })
+);
 
 export default loggerMiddleware;

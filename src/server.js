@@ -15,7 +15,7 @@ export const register:Function = (...fns:Middleware[]) => fns.forEach(applyMiddl
 
 export const listen:Function = (port:number):void => {
   const startMsg:string = `Starting server at http://127.0.0.1:${port}...`;
-  console.log(chalk.green(startMsg));
+  console.log(chalk.green(startMsg)); // eslint-disable-line
   server.listen(port);
 };
 
