@@ -1,6 +1,5 @@
 // @flow
 import director from 'director';
-import chalk from 'chalk';
 
 /* [Type Definitions] */
 import type { Middleware, Route } from './types';
