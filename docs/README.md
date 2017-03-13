@@ -2,6 +2,7 @@
 
 ### Developing Arc
 * [npm scripts](./scripts.md)
+* [Local git hooks](./local_hooks.md)
 * [Using Arc canary build](./canary.md)
 
 ### Using Arc
