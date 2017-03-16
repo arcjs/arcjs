@@ -14,17 +14,17 @@ export type Config = {
 };
 
 /* [Defaults] */
-export const DEFAULT_NAME:string = 'arc-server';
+export const DEFAULT_NAME: string = 'arc-server';
 
-const HEALTH_CHECK_ROUTE:Route = {
+const HEALTH_CHECK_ROUTE: Route = {
   method: 'GET',
   path: '/health-check',
   handler: async () => '',
 };
 
-const DEFAULT_ROUTES:Route[] = [HEALTH_CHECK_ROUTE];
+const DEFAULT_ROUTES: Route[] = [HEALTH_CHECK_ROUTE];
 
-const DEFAULT_CONFIG:Config = {
+const DEFAULT_CONFIG: Config = {
   name: DEFAULT_NAME,
   port: 8080,
   logger: true,
@@ -32,7 +32,7 @@ const DEFAULT_CONFIG:Config = {
 };
 
 /* [Private] */
-const configReducer:Function = (c0:Config, c1:Config):Config => {
+const configReducer: Function = (c0: Config, c1: Config): Config => {
   const r0 = c0.routes || [];
   const r1 = c1.routes || [];
   return {
@@ -42,14 +42,13 @@ const configReducer:Function = (c0:Config, c1:Config):Config => {
   };
 };
 
-const initMiddleware:Function = (config:Config):void => {
+const initMiddleware: Function = (config: Config): void => {
   server.register(router(config.routes));
   if (config.logger) server.register(logger(config.name));
 };
 
-const mergeConfigs:Function = (...configs:Config[]):Config => (
-  configs.reduce(configReducer)
-);
+const mergeConfigs: Function = (...configs: Config[]): Config =>
+  configs.reduce(configReducer);
 /* [Tests] */
 export const __test__ = {
   DEFAULT_NAME,
@@ -58,8 +57,8 @@ export const __test__ = {
 };
 
 /* [Public] */
-export const start = (opts:Config):void => {
-  const config:Config = mergeConfigs(DEFAULT_CONFIG, opts);
+export const start = (opts: Config): void => {
+  const config: Config = mergeConfigs(DEFAULT_CONFIG, opts);
   initMiddleware(config);
   server.listen(config.port);
 };

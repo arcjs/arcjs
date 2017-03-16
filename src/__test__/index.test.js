@@ -12,11 +12,13 @@ const options = {
     name: 'test-server',
     logger: true,
     port: 3000,
-    routes: [{
-      method: 'GET',
-      path: 'arc-test',
-      handler: async () => 'Arc: pop quiz!',
-    }],
+    routes: [
+      {
+        method: 'GET',
+        path: 'arc-test',
+        handler: async () => 'Arc: pop quiz!',
+      },
+    ],
   },
   noLogger: {
     logger: false,
@@ -36,7 +38,9 @@ describe('#start', () => {
 
   test('it calls router with the health check route', () => {
     arc.start(options.valid);
-    expect(router).toHaveBeenCalledWith(expect.arrayContaining([t.HEALTH_CHECK_ROUTE]));
+    expect(router).toHaveBeenCalledWith(
+      expect.arrayContaining([t.HEALTH_CHECK_ROUTE]),
+    );
   });
 
   test('it only registers the default routes when routes is not provided in the options', () => {
@@ -46,16 +50,20 @@ describe('#start', () => {
 
   test('it calls router with any configured route', () => {
     arc.start(options.valid);
-    expect(router).toHaveBeenCalledWith(expect.arrayContaining(options.valid.routes));
+    expect(router).toHaveBeenCalledWith(
+      expect.arrayContaining(options.valid.routes),
+    );
   });
 
   test('it calls server.register with the response from router', () => {
     router.mockImplementationOnce(mockResponse);
     arc.start(options.valid);
-    expect(server.register).toHaveBeenCalledWith({ mock: t.DEFAULT_ROUTES.concat(options.valid.routes) });
+    expect(server.register).toHaveBeenCalledWith({
+      mock: t.DEFAULT_ROUTES.concat(options.valid.routes),
+    });
   });
 
-  test('it doesn\'t call logger when logger is set to false in the options', () => {
+  test("it doesn't call logger when logger is set to false in the options", () => {
     arc.start(options.noLogger);
     expect(logger).not.toHaveBeenCalled();
   });

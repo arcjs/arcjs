@@ -45,7 +45,8 @@
     "flow-bin": "^0.41.0",
     "git-hooks": "^1.1.8",
     "jest": "^19.0.2",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "prettier": "^0.22.0"
   },
   "jest": {
     "verbose": true,

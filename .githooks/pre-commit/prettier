@@ -1,0 +1,11 @@
+#!/bin/bash
+
+jsfiles=$(git diff --cached --name-only --diff-filter=ACM | grep '\.js$' | tr '\n' ' ')
+[ -z "$jsfiles" ] && exit 0
+
+diffs=$(node_modules/.bin/prettier -l $jsfiles)
+[ -z "$diffs" ] && exit 0
+
+node_modules/.bin/prettier --trailing-comma=all --parser=flow --single-quote --write "{src,__{tests,mocks}__}/**/*.js"
+echo "Prettifying files..."
+git add -u

@@ -11,15 +11,18 @@ jest.mock('director', () => {
 });
 
 describe('router', () => {
-  const ROUTES_CONFIG = [{
-    method: 'GET',
-    path: '/test-route',
-    handler: async () => 'test-route',
-  }, {
-    method: 'POST',
-    path: '/test-post-route',
-    handler: async () => 'test-post-route',
-  }];
+  const ROUTES_CONFIG = [
+    {
+      method: 'GET',
+      path: '/test-route',
+      handler: async () => 'test-route',
+    },
+    {
+      method: 'POST',
+      path: '/test-post-route',
+      handler: async () => 'test-post-route',
+    },
+  ];
 
   beforeEach(() => {
     director.http.Router().dispatch.mockClear();
@@ -31,7 +34,7 @@ describe('router', () => {
     expect(director.http.Router).toHaveBeenCalled();
   });
 
-  test('it adapts the routes object to director\'s format before calling director.http.Router', () => {
+  test("it adapts the routes object to director's format before calling director.http.Router", () => {
     router(ROUTES_CONFIG);
 
     const expectedRoute1 = ROUTES_CONFIG[0].path;

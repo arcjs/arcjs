@@ -45,7 +45,7 @@ describe('#listen', () => {
     Koa.prototype.listen.mockClear();
   });
 
-  test('it calls koa.listen with the port number passed in', ()=> {
+  test('it calls koa.listen with the port number passed in', () => {
     server.listen(PORT);
     expect(Koa.prototype.listen).toHaveBeenCalledWith(PORT);
   });
@@ -53,6 +53,8 @@ describe('#listen', () => {
   test('it logs the port that the server is being started on', () => {
     chalk.green.mockImplementationOnce(v => v);
     server.listen(PORT);
-    expect(console.log).toHaveBeenCalledWith(expect.stringContaining(`${PORT}`));
+    expect(console.log).toHaveBeenCalledWith(
+      expect.stringContaining(`${PORT}`),
+    );
   });
 });
