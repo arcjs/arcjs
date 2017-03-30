@@ -1524,6 +1524,12 @@
       "resolved": "https://registry.npmjs.org/fill-range/-/fill-range-2.2.3.tgz",
       "dev": true
     },
+    "find-parent-dir": {
+      "version": "0.3.0",
+      "from": "find-parent-dir@>=0.3.0 <0.4.0",
+      "resolved": "https://registry.npmjs.org/find-parent-dir/-/find-parent-dir-0.3.0.tgz",
+      "dev": true
+    },
     "find-up": {
       "version": "2.1.0",
       "from": "find-up@>=2.1.0 <3.0.0",
@@ -2473,12 +2479,6 @@
         }
       }
     },
-    "git-hooks": {
-      "version": "1.1.8",
-      "from": "git-hooks@>=1.1.8 <2.0.0",
-      "resolved": "https://registry.npmjs.org/git-hooks/-/git-hooks-1.1.8.tgz",
-      "dev": true
-    },
     "glob": {
       "version": "6.0.4",
       "from": "glob@>=6.0.1 <7.0.0",
@@ -2654,6 +2654,20 @@
       "from": "http-signature@>=1.1.0 <1.2.0",
       "resolved": "https://registry.npmjs.org/http-signature/-/http-signature-1.1.1.tgz",
       "dev": true
+    },
+    "husky": {
+      "version": "0.13.3",
+      "from": "husky@latest",
+      "resolved": "https://registry.npmjs.org/husky/-/husky-0.13.3.tgz",
+      "dev": true,
+      "dependencies": {
+        "normalize-path": {
+          "version": "1.0.0",
+          "from": "normalize-path@>=1.0.0 <2.0.0",
+          "resolved": "https://registry.npmjs.org/normalize-path/-/normalize-path-1.0.0.tgz",
+          "dev": true
+        }
+      }
     },
     "iconv-lite": {
       "version": "0.4.13",
