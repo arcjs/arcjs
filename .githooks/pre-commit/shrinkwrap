@@ -1,11 +1,11 @@
 #!/bin/bash
 
-npm prune
-npm shrinkwrap
 files=`git diff --cached --name-status`
-re="npm-shrinkwrap.json"
+re="package.json"
 if [[ $files =~ $re ]]
 then
-  echo "Adding npm-shrinkwrap.json"
+  npm prune
+  npm shrinkwrap
   git add npm-shrinkwrap.json
+  echo "Adding npm-shrinkwrap.json"
 fi
